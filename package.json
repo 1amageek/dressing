@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/1amageek/Dressing/issues"
   },
-  "homepage": "https://github.com/1amageek/Dressing#readme"
+  "homepage": "https://github.com/1amageek/Dressing#readme",
+  "dependencies": {
+    "firebase-functions": "^0.6.2",
+    "lodash": "^4.17.4",
+    "request-promise": "^4.2.1"
+  }
 }
