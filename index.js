@@ -1,10 +1,6 @@
 const _ = require('lodash');
 const request = require('request-promise');
 
-function dressing(functions) {
-	this.functions = functions
-}
-
 class Dressing {
 	constructor(functions) {
 		this.functions = functions;
@@ -48,8 +44,4 @@ class Dressing {
 	}
 }
 
-dressing.prototype = {
-
-}
-
-module.exports = dressing;
+module.exports = Dressing;
