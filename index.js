@@ -5,11 +5,11 @@ function dressing(functions) {
 	this.functions = functions
 }
 
-dressing.prototype = {
-	init: (functions) => {
-		this.functions = functions
-	},
-	put: (type, properties) => {
+class Dressing {
+	constructor(functions) {
+		this.functions = functions;
+	}
+	put(type, properties) {
 		if (!type) {
 			console.log("[Dressing] *** error: 'type' is not defined.");
 			return
@@ -46,6 +46,10 @@ dressing.prototype = {
 			})
 		});
 	}
+}
+
+dressing.prototype = {
+
 }
 
 module.exports = dressing;
