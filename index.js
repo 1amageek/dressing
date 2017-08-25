@@ -1,8 +1,14 @@
-const functions = require('firebase-functions');
 const _ = require('lodash');
 const request = require('request-promise');
 
-const dressing = {
+function dressing(functions) {
+	this.functions = functions
+}
+
+dressing.prototype = {
+	init: (functions) => {
+		this.functions = functions
+	},
 	put: (type, properties) => {
 		if (!type) {
 			console.log("[Dressing] *** error: 'type' is not defined.");
@@ -12,7 +18,7 @@ const dressing = {
 		const ignore = properties || [];
 		const path = `/{version}/${type}/{id}/`;
 
-		return functions.database.ref(path)
+		return this.functions.database.ref(path)
 		.onWrite(event => {
 			const version		= event.params.version;
 			const id				= event.params.id;
@@ -20,7 +26,7 @@ const dressing = {
 
 			console.log(`${version}/${type}/${id}`, data);
 
-			let elasticSearchConfig = functions.config().elasticsearch;
+			let elasticSearchConfig = this.functions.config().elasticsearch;
 			let elasticSearchUrl = elasticSearchConfig.url + `${version}/${type}/${id}`;
 			let elasticSearchMethod = data ? 'POST' : 'DELETE';
 
