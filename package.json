@@ -1,0 +1,24 @@
+{
+  "name": "dressing",
+  "version": "1.0.0",
+  "description": "Dressing provides the functionality of CloudFunctions to connect Firebase and ElasticSearch. You need to use Salada for clients.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1amageek/Dressing.git"
+  },
+  "keywords": [
+    "Firebase",
+    "Salada",
+    "ElasticSearch"
+  ],
+  "author": "1amageek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/1amageek/Dressing/issues"
+  },
+  "homepage": "https://github.com/1amageek/Dressing#readme"
+}
