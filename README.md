@@ -19,5 +19,5 @@ const dressing = new Dressing(functions);
 /**
  Elasticsearch
 */
-exports.indexPostToElastic = dressing.put('post', [])
+exports.indexPostToElastic = dressing.put('post')
 ```
