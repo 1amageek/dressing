@@ -51,7 +51,7 @@ class Dressing {
 		const _methods = methods || ['GET', 'POST'];
 		return this.functions.https.onRequest((req, res) => {
 			const method = req.method;
-			console.console.log("Proxy method: ", method);
+			console.log("Proxy method: ", method);
 			// In the case of a prohibited request, an error is returned
 			// if (!_methods.includes(method)) {
 			// 	return res.status(403).send("This request method is restricted.")
