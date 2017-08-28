@@ -53,9 +53,9 @@ class Dressing {
 			const method = req.method;
 			console.console.log("Proxy method: ", method);
 			// In the case of a prohibited request, an error is returned
-			if (!_methods.includes(method)) {
-				return res.status(403).send("This request method is restricted.")
-			}
+			// if (!_methods.includes(method)) {
+			// 	return res.status(403).send("This request method is restricted.")
+			// }
 
 			let elasticsearchRequest = {
 				method: method,
