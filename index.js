@@ -48,32 +48,32 @@ class Dressing {
 		});
 	}
 
-	proxy(methods) {
-		const _methods = methods || ['GET'];
-		return this.functions.https.onRequest((req, res) => {
-			const method = req.method;
-
-			// In the case of a prohibited request, an error is returned
-			if (_methods.indexOf(method) == -1) {
-				return res.status(403).send("This request method is restricted.")
-			}
-
-			let elasticsearchRequest = {
-				method: method,
-				uri: this.config.url,
-				auth: {
-					username: this.config.username,
-					password: this.config.password,
-				},
-				body: req.body,
-				json: true
-			};
-
-			return request(elasticsearchRequest).then(response => {
-				return res.status(200).send(response);
-			})
-		});
-	}
+	// proxy(methods) {
+	// 	const _methods = methods || ['GET'];
+	// 	return this.functions.https.onRequest((req, res) => {
+	// 		const method = req.method;
+	//
+	// 		// In the case of a prohibited request, an error is returned
+	// 		if (_methods.indexOf(method) == -1) {
+	// 			return res.status(403).send("This request method is restricted.")
+	// 		}
+	//
+	// 		let elasticsearchRequest = {
+	// 			method: method,
+	// 			uri: this.config.url,
+	// 			auth: {
+	// 				username: this.config.username,
+	// 				password: this.config.password,
+	// 			},
+	// 			body: req.body,
+	// 			json: true
+	// 		};
+	//
+	// 		return request(elasticsearchRequest).then(response => {
+	// 			return res.status(200).send(response);
+	// 		})
+	// 	});
+	// }
 }
 
 module.exports = Dressing;
