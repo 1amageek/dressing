@@ -48,7 +48,7 @@ class Dressing {
 	}
 
 	proxy(methods) {
-		const _methods = methods || ['GET'];
+		const _methods = methods || ['GET', 'POST'];
 		return this.functions.https.onRequest((req, res) => {
 			const method = req.method;
 
