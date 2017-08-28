@@ -2,9 +2,12 @@ const _ = require('lodash');
 const request = require('request-promise');
 
 class Dressing {
+
 	constructor(functions) {
 		this.functions = functions;
+		this.config = functions.config().elasticsearch;
 	}
+
 	put(type, properties) {
 		if (!type) {
 			console.log("[Dressing] *** error: 'type' is not defined.");
@@ -18,20 +21,22 @@ class Dressing {
 		.onWrite(event => {
 			const version		= event.params.version;
 			const id				= event.params.id;
-			const data 			= event.data.val();
+			var data				= event.data.val();
 
 			console.log(`${version}/${type}/${id}`, data);
 
-			let elasticSearchConfig = this.functions.config().elasticsearch;
-			let elasticSearchUrl = elasticSearchConfig.url + `${version}/${type}/${id}`;
-			let elasticSearchMethod = data ? 'POST' : 'DELETE';
+			// Set id to conform to the Client's Decodable protocol
+			data.id = id;
+
+			let url = this.config.url + `${version}/${type}/${id}`;
+			let method = data ? 'POST' : 'DELETE';
 
 			let elasticsearchRequest = {
-				method: elasticSearchMethod,
-				uri: elasticSearchUrl,
+				method: method,
+				uri: url,
 				auth: {
-					username: elasticSearchConfig.username,
-					password: elasticSearchConfig.password,
+					username: this.config.username,
+					password: this.config.password,
 				},
 				body: _.omit(data, ignore),
 				json: true
@@ -39,6 +44,33 @@ class Dressing {
 
 			return request(elasticsearchRequest).then(response => {
 				console.log('Elasticsearch response', response);
+			})
+		});
+	}
+
+	proxy(methods) {
+		const _methods = methods || ['GET'];
+		return this.functions.https.onRequest((req, res)) => {
+			const method = req.method;
+
+			// In the case of a prohibited request, an error is returned
+			if (_methods.indexOf(method) == -1) {
+				return res.status(403).send("This request method is restricted.")
+			}
+
+			let elasticsearchRequest = {
+				method: method,
+				uri: this.config.url,
+				auth: {
+					username: this.config.username,
+					password: this.config.password,
+				},
+				body: req.body,
+				json: true
+			};
+
+			return request(elasticsearchRequest).then(response => {
+				return res.status(200).send(response);
 			})
 		});
 	}
