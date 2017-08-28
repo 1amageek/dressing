@@ -50,7 +50,7 @@ class Dressing {
 
 	proxy(methods) {
 		const _methods = methods || ['GET'];
-		return this.functions.https.onRequest((req, res)) => {
+		return this.functions.https.onRequest((req, res) => {
 			const method = req.method;
 
 			// In the case of a prohibited request, an error is returned
