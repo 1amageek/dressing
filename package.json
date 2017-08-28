@@ -1,6 +1,6 @@
 {
   "name": "dressing",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Dressing provides the functionality of CloudFunctions to connect Firebase and ElasticSearch. You need to use Salada for clients.",
   "main": "index.js",
   "scripts": {

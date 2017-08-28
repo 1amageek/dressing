@@ -5,6 +5,7 @@ class Dressing {
 
 	constructor(functions) {
 		this.functions = functions;
+		this.config = functions.config().elasticsearch;
 	}
 
 	put(type, properties) {
@@ -27,15 +28,15 @@ class Dressing {
 			// Set id to conform to the Client's Decodable protocol
 			data.id = id;
 
-			let url = this.functions.config.url + `${version}/${type}/${id}`;
+			let url = this.config.url + `${version}/${type}/${id}`;
 			let method = data ? 'POST' : 'DELETE';
 
 			let elasticsearchRequest = {
 				method: method,
 				uri: url,
 				auth: {
-					username: this.functions.config.username,
-					password: this.functions.config.password,
+					username: this.config.username,
+					password: this.config.password,
 				},
 				body: _.omit(data, ignore),
 				json: true
@@ -59,10 +60,10 @@ class Dressing {
 
 			let elasticsearchRequest = {
 				method: method,
-				uri: this.functions.config.url,
+				uri: this.config.url,
 				auth: {
-					username: this.functions.config.username,
-					password: this.functions.config.password,
+					username: this.config.username,
+					password: this.config.password,
 				},
 				body: req.body,
 				json: true
