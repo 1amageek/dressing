@@ -61,6 +61,7 @@ class Dressing {
 			// }
 
 			const uri = this.config.url + type + '_search';
+			console.log(uri);
 			let elasticsearchRequest = {
 				method: method,
 				uri: uri,
