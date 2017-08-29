@@ -53,7 +53,7 @@ class Dressing {
 		return this.functions.https.onRequest((req, res) => {
 			const method = req.method;
 			const type = req.url.slice(1);
-			console.log("Proxy method: ", method, _methos);
+			console.log("Proxy method: ", method, _methods);
 			console.log(type);
 			// In the case of a prohibited request, an error is returned
 			// if (!_methods.includes(method)) {
