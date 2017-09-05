@@ -23,6 +23,14 @@ class Dressing {
 			const id				= event.params.id;
 			var data				= event.data.val();
 
+			if (data._createdAt) {
+				data._createdAt = data._createdAt / 1000;
+			}
+
+			if (data._updatedAt) {
+				data._updatedAt = data._updatedAt / 1000;
+			}
+
 			console.log(`${version}/${type}/${id}`, data);
 
 			// Set id to conform to the Client's Decodable protocol
@@ -53,6 +61,7 @@ class Dressing {
 		return this.functions.https.onRequest((req, res) => {
 			const method = req.method;
 			const type = req.url.slice(1);
+
 			console.log("Proxy method: ", method, _methods);
 			console.log(type);
 			// In the case of a prohibited request, an error is returned
