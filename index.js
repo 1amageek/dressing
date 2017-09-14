@@ -63,9 +63,9 @@ class Dressing {
 			const paths = req.url.slice(1).split("/");
 			const index = paths[0];
 			const type = paths[1];
-			const command = paths[2] || "";
+			const command = paths[paths.length - 1] || "";
 
-			console.log(paths, "!!!!!!!!!!!!!");
+			console.log(paths);
 			console.log(req.url, index, type, command);
 			console.log("Proxy method: ", method, _methods);
 			console.log(type);
