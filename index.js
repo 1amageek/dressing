@@ -65,7 +65,7 @@ class Dressing {
 			const type = paths[1];
 			const command = paths[2] || "";
 
-			console.log(paths);
+			console.log(paths, "!!!!!!!!!!!!!");
 			console.log(req.url, index, type, command);
 			console.log("Proxy method: ", method, _methods);
 			console.log(type);
