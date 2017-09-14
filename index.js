@@ -65,6 +65,7 @@ class Dressing {
 			const index = paths[0];
 			const type = paths[1];
 
+			console.log(req);
 			console.log(req.url, index, type);
 			console.log("Proxy method: ", method, _methods);
 			// In the case of a prohibited request, an error is returned
