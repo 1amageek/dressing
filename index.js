@@ -62,6 +62,7 @@ class Dressing {
 			const method = req.method;
 			const type = req.url.slice(1);
 
+			console.log(req.url);
 			console.log("Proxy method: ", method, _methods);
 			console.log(type);
 			// In the case of a prohibited request, an error is returned
