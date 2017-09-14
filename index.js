@@ -60,9 +60,12 @@ class Dressing {
 		const _methods = methods || ['GET', 'POST'];
 		return this.functions.https.onRequest((req, res) => {
 			const method = req.method;
-			const type = req.url.slice(1);
+			const paths = req.url.slice(1).split("/");
+			const index = paths[0];
+			const type = paths[1];
+			const command = paths[2] || "";
 
-			console.log(req.url);
+			console.log(req.url, index, type, command);
 			console.log("Proxy method: ", method, _methods);
 			console.log(type);
 			// In the case of a prohibited request, an error is returned
@@ -70,7 +73,7 @@ class Dressing {
 			// 	return res.status(403).send("This request method is restricted.")
 			// }
 
-			const uri = this.config.url + type + '_search';
+			const uri = this.config.url + `${index}/${type}/${command}`;
 			console.log(uri);
 			let elasticsearchRequest = {
 				method: method,
